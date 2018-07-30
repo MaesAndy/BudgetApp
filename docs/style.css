@@ -17,10 +17,30 @@
 body {
     color: #555;
     font-family: Open Sans;
-    font-size: 16px;
+    font-size: 12px;
     position: relative;
-    height: 100vh;
+
     font-weight: 400;
+
+
+    background-image: -webkit-gradient(linear, left top, right bottom, from(#28B9B5), to(#136764));
+        background-image: linear-gradient(to right bottom, #28B9B5, #136764);
+        background-size: cover;
+        background-repeat: no-repeat;
+        min-height: 100vh;
+
+
+
+}
+
+.container{
+  max-width: 120rem;
+    margin: 8rem auto;
+    background-color: #f4f2f2;
+    -webkit-box-shadow: 0 2rem 6rem rgba(0,0,0, 0.3);
+    box-shadow: 0 2rem 6rem rgba(0,0,0, 0.3);
+    min-height: 50rem;
+
 }
 
 .right { float: right; }
@@ -42,7 +62,7 @@ body {
 
 .budget {
     position: absolute;
-    width: 350px;
+    width: 460px;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -50,7 +70,7 @@ body {
 }
 
 .budget__title {
-    font-size: 18px;
+    font-size: 46px;
     text-align: center;
     margin-bottom: 10px;
     font-weight: 300;
@@ -186,11 +206,13 @@ body {
     float: left;
     width: 475px;
     margin-right: 50px;
+    padding-left: 10px;
 }
 
 .expenses {
     float: left;
     width: 475px;
+    padding-right: 10px;
 }
 
 h2 {
@@ -213,6 +235,7 @@ h2 {
 
 .item__description {
     float: left;
+    text-transform: uppercase;
 }
 
 .item__value {

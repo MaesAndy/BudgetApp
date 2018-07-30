@@ -308,7 +308,7 @@ var UIController = (function() {
         },
 
         readLocalStorage: function(incomes, expenses){
-        
+
 
           if(incomes){
             var html, newHtml, el;
@@ -547,6 +547,10 @@ var updatePercentages = function(){
         totalExpense: startscreen.totalExpense,
         percentage:startscreen.percentage}) ;
       UIctrl.readLocalStorage(startscreen.incomes, startscreen.expenses);
+
+      var arrayPercentages = budgetCtrl.getPercentages();
+      console.log("percentages are: " + arrayPercentages)
+      /*UIctrl.displayPercentages(arrayPercentages);*/
 
       setupEventListeners();
     }
