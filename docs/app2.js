@@ -177,11 +177,13 @@ var budgetController = (function() {
           this.percentage = cur.calcPercentage(data.totals.inc)
 
         });
+        
 
       },
 
       getPercentages: function(){
         var percentagesArray;
+
 
         percentagesArray = data.allItems.exp.map(function(cur){
           return cur.getPercentage();
@@ -327,10 +329,11 @@ var UIController = (function() {
             var html, newHtml, el;
             for (var i = 0; i < expenses.length; i++){
               el = DOMstrings.expensesList;
-              html ='<div class="item clearfix" id="expense-%ID%"><div class="item__description">%description%</div><div class="right clearfix"><div class="item__value">%value%</div><div class="item__percentage">21%</div><div class="item__delete"><button class="item__delete--btn"><i class="ion-ios-close-outline"></i></button></div></div></div>'
+              html ='<div class="item clearfix" id="expense-%ID%"><div class="item__description">%description%</div><div class="right clearfix"><div class="item__value">%value%</div><div class="item__percentage">%percentage% %</div><div class="item__delete"><button class="item__delete--btn"><i class="ion-ios-close-outline"></i></button></div></div></div>'
               newHtml = html.replace("%ID%", expenses[i].ID);
               newHtml = newHtml.replace("%description%", expenses[i].description);
               newHtml = newHtml.replace("%value%", formatNumber(expenses[i].value, 'exp'));
+              newHtml = newHtml.replace("%percentage%", expenses[i].percentage);
 
               document.querySelector(el).insertAdjacentHTML('beforeend', newHtml);
             }
@@ -477,25 +480,25 @@ var Controller = (function (budgetCtrl, UIctrl) {
 
   var ctrlAddItem = function(){
 
-//get values from eventlistener
-  var newItem, input;
+        //get values from eventlistener
+          var newItem, input;
 
-  input = UIctrl.getInput();
-
-
-//adding values to the budgetController
-
-if(input.description !== "" && !isNaN(input.value) && input.value > 0){
-
-    newItem = budgetCtrl.addItem(input.type, input.description, parseFloat(input.value));
-    UIctrl.addListItem(newItem, input.type);
-    UIctrl.clearInputFields();
-    updateBudget();
-    updatePercentages();
+          input = UIctrl.getInput();
 
 
+        //adding values to the budgetController
 
-  }
+        if(input.description !== "" && !isNaN(input.value) && input.value > 0){
+
+            newItem = budgetCtrl.addItem(input.type, input.description, parseFloat(input.value));
+            UIctrl.addListItem(newItem, input.type);
+            UIctrl.clearInputFields();
+            updateBudget();
+            updatePercentages();
+
+
+
+          }
 
 };
 
@@ -548,9 +551,11 @@ var updatePercentages = function(){
         percentage:startscreen.percentage}) ;
       UIctrl.readLocalStorage(startscreen.incomes, startscreen.expenses);
 
-      var arrayPercentages = budgetCtrl.getPercentages();
-      console.log("percentages are: " + arrayPercentages)
-      /*UIctrl.displayPercentages(arrayPercentages);*/
+
+
+
+
+
 
       setupEventListeners();
     }
