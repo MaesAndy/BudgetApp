@@ -96,8 +96,9 @@ var budgetController = (function(){
 
         if (index !== -1){
           data.allItems[type].splice(index, 1);
-          localStorage.setItem('storageLocal', JSON.stringify(data));
+
         }
+        localStorage.setItem('storageLocal', JSON.stringify(data));
 
 
 
@@ -422,7 +423,7 @@ readLocalStorage: function(incomes, expenses){
 
 
   if(incomes){
-    console.log("loadedData: "+incomes[0].id + incomes[0].description + incomes[0].value);
+
 
 
     var html, newHtml, el;
@@ -441,7 +442,7 @@ readLocalStorage: function(incomes, expenses){
     var html, newHtml, el;
     for (var i = 0; i < expenses.length; i++){
       el = DOMstrings.expensesContainer;
-      html ='<div class="item clearfix" id="exp-%ID%"><div class="item__description">%description%</div><div class="right clearfix"><div class="item__value">%value%</div><div class="item__percentage">%percentage% %</div><div class="item__delete"><button class="item__delete--btn"><i class="ion-ios-close-outline"></i></button></div></div></div>'
+      html ='<div class="item clearfix" id="exp-%id%"><div class="item__description">%description%</div><div class="right clearfix"><div class="item__value">%value%</div><div class="item__percentage">%percentage% %</div><div class="item__delete"><button class="item__delete--btn"><i class="ion-ios-close-outline"></i></button></div></div></div>'
       newHtml = html.replace("%id%", expenses[i].id);
       newHtml = newHtml.replace("%description%", expenses[i].description);
       newHtml = newHtml.replace("%value%", formatNumber(expenses[i].value, 'exp'));
